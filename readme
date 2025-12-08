@@ -1,0 +1,26 @@
+blog-app/
+│
+├── controllers/
+│   ├── authController.js
+│   ├── postController.js
+│   └── adminController.js
+│
+├── models/
+│   ├── userModel.js
+│   ├── postModel.js
+│   └── commentModel.js
+│
+├── routes/
+│   ├── authRoutes.js
+│   ├── postRoutes.js
+│   └── adminRoutes.js
+│
+├── middleware/
+│   ├── authMiddleware.js
+│   └── roleMiddleware.js
+│
+├── config/
+│   └── db.js
+│
+├── server.js
+└── .env
