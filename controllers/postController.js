@@ -1,7 +1,7 @@
 const Post = require('../models/postModel');
 
 // CREATE POST
-exports.crearePost = async (req, res) => {
+exports.createPost = async (req, res) => {
   try{
     const {title, content} =req.body;
 
@@ -13,9 +13,9 @@ exports.crearePost = async (req, res) => {
 
     await post.save();
 
-    res.status(201).json
+    res.status(201).json({ message: "Post created", post });
   }catch(err){
-    res.status(500).json({message: "Server error"});
+    res.status(500).json({error: err.message});
   }
 };
 
@@ -26,7 +26,7 @@ exports.getAllPosts = async (req, res) => {
 };
 
 //GET ONE POST
-exports.getAllPosts = async (req, res) => {
+exports.getPost = async (req, res) => {
   const post =await Post.findById(req.params.id).populate("author", "name email");
   if(!post){
     return res.status(404).json({message: "Post not found"});
