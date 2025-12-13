@@ -1,0 +1,95 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+  <meta charset="UTF-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1.0">
+  <title>admin-dashboard</title>
+  <script src="https://cdn.tailwindcss.com"></script>
+
+</head>
+<body>
+<!-- Navbar -->
+<nav class="w-full bg-white border-b shadow-sm px-8 py-4 flex items-center justify-between">
+  
+  <!-- Left: Logo + Navigation -->
+  <div class="flex items-center space-x-10">
+    <!-- Logo -->
+    <div class="font-semibold text-2xl tracking-tight text-gray-800">
+      AdminPanel
+    </div>
+
+    <!-- Nav Links -->
+    <ul class="hidden md:flex items-center space-x-8 text-gray-600 font-medium">
+      
+      <li>
+          <button onclick="showSection('users')" class="hover:text-gray-900 transition">Users</button>
+      </li>
+      <li>
+          <button onclick="showSection('posts')" class="hover:text-gray-900 transition">Posts</button>
+      </li>
+      <li><a href="#" class="hover:text-gray-900 transition">Comments</a></li>
+      <li><a href="#" class="hover:text-gray-900 transition">Analytics</a></li>
+      <li><a href="#" class="hover:text-gray-900 transition">Settings</a></li>
+    </ul>
+  </div>
+
+
+
+  <!-- Right: Icons + Profile -->
+  <div class="flex items-center space-x-6">
+
+    <!-- Notifications -->
+    <button class="relative hover:opacity-80">
+      <span class="absolute -top-1 -right-1 bg-red-500 text-white text-xs w-4 h-4 flex items-center justify-center rounded-full">4</span>
+      <svg class="w-6 h-6 text-gray-700" fill="none" stroke="currentColor" stroke-width="2" viewBox="0 0 24 24">
+        <path stroke-linecap="round" stroke-linejoin="round"
+          d="M15 17h5l-1.4-1.4A2 2 0 0118 14V10a6 6 0 10-12 0v4c0 .53-.21 1.04-.6 1.4L4 17h5m6 0v1a3 3 0 11-6 0v-1m6 0H9" />
+      </svg>
+    </button>
+
+    <!-- Theme Toggle -->
+    <button class="hover:opacity-80">
+      <svg class="w-6 h-6 text-gray-700" fill="none" stroke="currentColor" stroke-width="2" viewBox="0 0 24 24">
+        <path stroke-linecap="round" stroke-linejoin="round"
+          d="M12 3v1m0 16v1m8.66-9h-1M4.34 12h-1M16.95 7.05l-.7.7M7.05 16.95l-.7.7M16.95 16.95l-.7-.7M7.05 7.05l-.7-.7M12 8a4 4 0 100 8 4 4 0 000-8z" />
+      </svg>
+    </button>
+
+    <!-- Profile -->
+    <div class="flex items-center space-x-3 cursor-pointer bg-gray-50 hover:bg-gray-100 transition px-3 py-1 rounded-xl">
+      <img src="https://via.placeholder.com/32" class="w-9 h-9 rounded-full shadow" />
+      <span class="font-medium text-gray-700 hidden sm:block">Admin</span>
+    </div>
+
+  </div>
+</nav>
+  <!-- CONTENT SECTIONS -->
+
+<div id="sectionUsers" class="p-8 hidden">
+  <h2 class ="text-2xl font-semibold mb-6">Users</h2>
+  <div id ="usersList" class="space-y-4"></div>
+</div>
+<div id="sectionPosts" class="p-8 hidden">
+  <h2 class ="text-2xl font-semibold mb-6">Posts</h2>
+  <div id ="postsList" class="space-y-4"></div>
+</div>
+<div id="sectionComments" class="p-8 hidden">
+  <h2 class ="text-2xl font-semibold mb-6">Comments</h2>
+  <div id ="commentsList" class="space-y-4"></div>
+</div>
+<div id="sectionAnalytics" class="p-8 hidden"></div>
+<div id="sectionSettings" class="p-8 hidden"></div>
+
+<!-- Floating Action Button -->
+<button class="fixed bottom-8 right-8 bg-blue-600 hover:bg-blue-700 transition text-white px-5 py-4 rounded-full shadow-lg flex items-center space-x-2">
+  <svg class="w-6 h-6 text-white" fill="none" stroke="currentColor" stroke-width="3" viewBox="0 0 24 24">
+    <path stroke-linecap="round" stroke-linejoin="round" d="M12 4v16m8-8H4" />
+  </svg>
+  <span class="font-semibold text-white tracking-wide">Create</span>
+</button>
+
+<script src="users.js"></script>
+<script src="posts.js"></script>
+<script src="dashboard.js"></script>
+</body>
+</html>

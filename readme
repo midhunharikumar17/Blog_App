@@ -24,3 +24,14 @@ blog-app/
 │
 ├── server.js
 └── .env
+
+
+GET    /api/admin/users
+PATCH  /api/admin/users/:id/deactivate
+PATCH  /api/admin/users/:id/activate
+
+GET    /api/posts
+DELETE /api/admin/posts/:id
+
+GET    /api/comments
+DELETE /api/admin/comments/:id
