@@ -35,3 +35,20 @@ DELETE /api/admin/posts/:id
 
 GET    /api/comments
 DELETE /api/admin/comments/:id
+
+
+
+public/
+│
+├── index.html          # User feed
+├── admin.html          # Admin dashboard
+├── login.html
+├── signup.html
+│
+├── js/
+│   ├── auth.js
+│   ├── posts.js
+│   ├── admin.js
+│
+└── css/
+    └── (optional custom.css)

@@ -21,10 +21,9 @@ router.get("/stats", auth, authorizeRoles("admin"),adminController.getStats);
 
 //USER Management 
 router.get("/users",auth, authorizeRoles("admin"), adminController.getAllUsers);
-router.delete("/users/:id" ,auth, authorizeRoles("admin"),adminController.deleteUser);
 router.put("/users/deactivate/:id",auth, authorizeRoles("admin"), adminController.deactivateUser);
 router.put("/users/reactivate/:id", auth, authorizeRoles("admin"), adminController.reactivateUser);
-
+router.delete("/users/:id" ,auth, authorizeRoles("admin"),adminController.deleteUser);
 
 //POST Management
 router.get("/posts",auth, authorizeRoles("admin"),adminController.getAllPosts)

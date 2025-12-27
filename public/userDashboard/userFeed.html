@@ -1,0 +1,121 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+  <meta charset="UTF-8" />
+  <title>User Feed</title>
+  <script src="https://cdn.tailwindcss.com"></script>
+</head>
+
+<body class="bg-gray-100">
+
+<!-- HEADER -->
+<header class="sticky top-0 bg-white shadow z-50">
+  <div class="max-w-7xl mx-auto px-6 py-4 flex items-center justify-between">
+
+    <!-- Left: Logo + Search -->
+    <div class="flex items-center space-x-6">
+      <h1 class="text-2xl font-bold text-gray-800">BlogApp</h1>
+
+      <input
+        id ="searchInput"
+        type="text"
+        placeholder="Search posts..."
+        class="px-4 py-2 w-72 rounded-full bg-gray-100 focus:outline-none focus:ring-2 focus:ring-orange-400"
+      />
+    </div>
+
+    <!-- Right -->
+    <div class="flex items-center space-x-5">
+      <button
+        id="createPostBtn"
+        class="bg-orange-500 hover:bg-orange-600 text-white px-5 py-2 rounded-full font-medium">
+        + Create Post
+      </button>
+
+      <!-- Avatar -->
+      <div class="relative">
+        <img
+          id="avatarBtn"
+          src="https://ui-avatars.com/api/?name=User"
+          class="w-10 h-10 rounded-full cursor-pointer"
+        />
+
+        <div
+          id="avatarMenu"
+          class="hidden absolute right-0 mt-3 w-40 bg-white shadow rounded-lg overflow-hidden"
+        >
+          <button 
+          onclick="window.location.href='profile.html'"
+          class="w-full text-left px-4 py-2 hover:bg-gray-100">
+            Profile
+          </button>
+          <button
+            id="logoutBtn"
+            class="w-full text-left px-4 py-2 hover:bg-gray-100 text-red-500">
+            Logout
+          </button>
+        </div>
+      </div>
+    </div>
+  </div>
+</header>
+
+<!-- MAIN -->
+<main class="max-w-7xl mx-auto px-6 py-8 grid grid-cols-1 lg:grid-cols-3 gap-8">
+
+  <!-- POSTS -->
+  <section id="postsContainer" class="lg:col-span-2 space-y-6"></section>
+
+  <!-- SIDEBAR -->
+  <aside class="space-y-6">
+    <h2 class="text-lg font-semibold">Top Rated Posts</h2>
+    <div id="topPosts" class="space-y-4"></div>
+  </aside>
+
+</main>
+
+<!-- ✅ CREATE POST MODAL (MOVED OUTSIDE MAIN) -->
+<div
+  id="createPostModal"
+  class="fixed inset-0 bg-black/40 hidden flex items-center justify-center z-50"
+>
+  <div class="bg-white rounded-xl w-full max-w-lg p-6 shadow-lg">
+    <h2 class="text-xl font-semibold mb-4">Create Post</h2>
+
+    <input
+      id="postTitle"
+      type="text"
+      placeholder="Post title"
+      class="w-full border rounded-lg px-4 py-2 mb-3 focus:outline-none focus:ring-2 focus:ring-orange-400"
+    />
+
+    <textarea
+      id="postContent"
+      placeholder="Write your post..."
+      rows="5"
+      class="w-full border rounded-lg px-4 py-2 mb-4 focus:outline-none focus:ring-2 focus:ring-orange-400"
+    ></textarea>
+
+    <div class="flex justify-end gap-3">
+      <button
+        id="closeCreatePost"
+        class="px-4 py-2 rounded-lg border">
+        Cancel
+      </button>
+
+      <button
+        id="submitPost"
+        class="bg-orange-500 hover:bg-orange-600 text-white px-5 py-2 rounded-lg font-medium">
+        Post
+      </button>
+    </div>
+  </div>
+</div>
+
+<!-- SCRIPTS -->
+<script src="posts.js"></script>
+<script src="header.js"></script>
+<script src="comments.js"></script>
+
+</body>
+</html>

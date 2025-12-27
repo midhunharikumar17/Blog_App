@@ -1,11 +1,11 @@
-const token = localStorage.getItem("token");
 
 async function loadPosts() {
   try {
-    if (!token) {
-      alert("No token found. Please login as admin.");
-      return;
-    }
+ if (typeof token === "undefined") {
+  var token = localStorage.getItem("token");
+  }else{
+    alert("Please Login as Admin")
+  }
 
     const res = await fetch("http://localhost:5000/api/admin/posts", {
       method: "GET",

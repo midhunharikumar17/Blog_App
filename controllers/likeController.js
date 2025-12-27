@@ -35,15 +35,15 @@ exports.unlikePost = async (req, res)=>{
     const userId = req.user.id;
 
 
-    const like = await Like.findOne({
+    const like = await Like.findOneAndDelete({
       post: postId,
       user: userId,
     });
 
-    if(!like)
+    if(!like){
       return res.status(404).json({message: "like not found"});
-
-    await like.deleteOne();
+    }
+    
     res.json({message: "post unliked successfully"});
     
     

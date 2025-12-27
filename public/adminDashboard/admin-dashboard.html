@@ -27,7 +27,10 @@
       <li>
           <button onclick="showSection('posts')" class="hover:text-gray-900 transition">Posts</button>
       </li>
-      <li><a href="#" class="hover:text-gray-900 transition">Comments</a></li>
+      <li>
+          <button onclick="showSection('comments')" class="hover:text-gray-900 transition">Comments</button>
+      </li>
+      
       <li><a href="#" class="hover:text-gray-900 transition">Analytics</a></li>
       <li><a href="#" class="hover:text-gray-900 transition">Settings</a></li>
     </ul>
@@ -57,12 +60,40 @@
 
     <!-- Profile -->
     <div class="flex items-center space-x-3 cursor-pointer bg-gray-50 hover:bg-gray-100 transition px-3 py-1 rounded-xl">
-      <img src="https://via.placeholder.com/32" class="w-9 h-9 rounded-full shadow" />
+      <img src="data:image/svg+xml;base64,PHN2ZyB3aWR0aD0iMzIiIGhlaWdodD0iMzIiIHZpZXdCb3g9IjAgMCAzMiAzMiIgZmlsbD0iI2NjYyIgeG1sbnM9Imh0dHA6Ly93d3cudzMub3JnLzIwMDAvc3ZnIj48Y2lyY2xlIGN4PSIxNiIgY3k9IjEyIiByPSI4Ii8+PHJlY3QgeD0iOCIgeT0iMjAiIHdpZHRoPSIxNiIgaGVpZ2h0PSI4Ii8+PC9zdmc+" class="w-9 h-9 rounded-full shadow" />
       <span class="font-medium text-gray-700 hidden sm:block">Admin</span>
     </div>
 
   </div>
 </nav>
+
+<!-- DASHBOARD OVERVIEW -->
+<div class="p-8 grid grid-cols-1 sm:grid-cols-2 lg:grid-cols-4 gap-6">
+
+  <!-- Total Users -->
+  <div class="bg-white rounded-2xl shadow p-6 flex items-center justify-between">
+    <div>
+      <p class="text-sm text-gray-500">Total Users</p>
+      <h2 id="totalUsers" class="text-3xl font-bold text-gray-800">0</h2>
+    </div>
+    <div class="bg-blue-100 text-blue-600 p-4 rounded-full">
+      👤
+    </div>
+  </div>
+
+  <!-- Total Posts -->
+  <div class="bg-white rounded-2xl shadow p-6 flex items-center justify-between">
+    <div>
+      <p class="text-sm text-gray-500">Total Posts</p>
+      <h2 id="totalPosts" class="text-3xl font-bold text-gray-800">0</h2>
+    </div>
+    <div class="bg-green-100 text-green-600 p-4 rounded-full">
+      📝
+    </div>
+  </div>
+
+</div>
+
   <!-- CONTENT SECTIONS -->
 
 <div id="sectionUsers" class="p-8 hidden">
@@ -90,6 +121,7 @@
 
 <script src="users.js"></script>
 <script src="posts.js"></script>
+<script src="comments.js"></script>
 <script src="dashboard.js"></script>
 </body>
 </html>

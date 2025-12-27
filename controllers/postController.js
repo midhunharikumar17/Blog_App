@@ -1,29 +1,51 @@
-const Post = require('../models/postModel');
+
+const Post = require("../models/postModel");
+const Like = require("../models/likeModel");
+const Comment = require("../models/commentModel");
+
+// const { post } = require('../routes/postRoutes');
 
 // CREATE POST
 exports.createPost = async (req, res) => {
-  try{
-    const {title, content} =req.body;
+  try {
+    const { title, content } = req.body;
 
-    const post= new Post({
+    const post = new Post({
       title,
       content,
-      author: req.user.id,
+      author: req.user.id 
     });
 
     await post.save();
-
-    res.status(201).json({ message: "Post created", post });
-  }catch(err){
-    res.status(500).json({error: err.message});
+    res.status(201).json(post);
+  } catch (err) {
+    res.status(500).json({ message: "Server error" });
   }
 };
 
 //GET ALL POSTS
 exports.getAllPosts = async (req, res) => {
-  const posts = await Post.find().populate("author", "name email");
+  const posts = await Post.find()
+    .populate("author", "name")
+    .lean();
+
+  const userId = req.user.id;
+
+  for (let post of posts) {
+    post.likesCount = await Like.countDocuments({ post: post._id });
+    post.commentsCount = post.comments?.length || 0;
+
+    const liked = await Like.findOne({
+      post: post._id,
+      user: userId
+    });
+
+    post.isLiked = !!liked;
+  }
+
   res.json(posts);
-};
+} 
+
 
 //GET ONE POST
 exports.getPost = async (req, res) => {
@@ -32,6 +54,17 @@ exports.getPost = async (req, res) => {
     return res.status(404).json({message: "Post not found"});
   }
   res.json(post);
+};
+
+//GET USERS POST
+exports.getUserPost = async (req, res) => {
+  try {
+    const posts = await Post.find({ author: req.user.id });
+    
+    res.json(posts);
+  } catch (err) {
+    res.status(500).json({ message: "Server error" });
+  }
 };
 
 //Update Post

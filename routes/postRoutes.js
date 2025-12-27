@@ -8,13 +8,18 @@ const{
     getPost,
     updatePost,
     deletePost,
+    getUserPost
 } = require('../controllers/postController');
+
+
+//get users post
+router.get("/user",auth, getUserPost);
 
 //CREATE POST
 router.post("/",auth, createPost);
 
 //get all posts
-router.get("/", getAllPosts);
+router.get("/",auth, getAllPosts);
 
 //get one post
 router.get("/:id", getPost);

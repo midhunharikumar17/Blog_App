@@ -1,6 +1,6 @@
 const User= require("..//models/userModel");
 const Post =require('../models/postModel');
-const Comment =("../models/commentModel");
+const Comment =require("../models/commentModel");
 const Like = require("../models/likeModel");
 
 //ADMIN DASHBOARD
@@ -33,7 +33,9 @@ exports.getAllUsers =async(req, res) =>{
 //Deactivate a user
 exports.deactivateUser = async (req, res)=>{
   try{
-    const user = await User.findByIdAndUpdate(req.params.id, {active: false});
+    const user = await User.findByIdAndUpdate(req.params.id, 
+      {isActive: false},
+    {new:true});
     if(!user)
       return res.status(404).json({message: "user not found"});
     res.json({message: "user deactivated successfully"});
@@ -45,7 +47,9 @@ exports.deactivateUser = async (req, res)=>{
 //Reactivate a User
 exports.reactivateUser = async (req, res)=>{
   try{
-    const user = await User.findByIdAndUpdate(req.params.id , {active: true});
+    const user = await User.findByIdAndUpdate(req.params.id ,
+       {isActive: true},
+      {new:true});
     if(!user)
       res.json(404).json({message: "user not found"});
     res.json({message: "user reactivated successfully"});
@@ -110,11 +114,13 @@ exports.reactivateUser = async (req, res)=>{
 
 //Get all comments
 exports.getAllComments = async (req, res) => {
+
+
   try{
     const comments = await Comment.find()
-    .populate(" user", "name email")
-    .populate("post", "title");
-
+    .populate("author", "name email")
+    .populate("post", "title")
+    .sort({ createdAt: -1 });
     res.json(comments);
   }catch(err){
     res.status(500).json({error:err.message});

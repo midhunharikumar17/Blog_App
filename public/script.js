@@ -1,7 +1,9 @@
+
 document.addEventListener("DOMContentLoaded", () => {
     const signUpButton = document.getElementById("signUp");
     const signInButton = document.getElementById("signIn");
     const container = document.getElementById("container");
+
 
     signUpButton.addEventListener("click", () => {
         container.classList.add("right-panel-active");
@@ -86,12 +88,16 @@ document.getElementById("logIn").addEventListener("submit", async (e) => {
     localStorage.setItem("token", data.token);
     localStorage.setItem("role", data.role);
 
+
+
+    localStorage.setItem("user", JSON.stringify(data.user));
+
     if(data.role === "admin"){
         alert("Welcome Admin!");
         window.location.href = "adminDashboard/admin-dashboard.html";
     } else {
         alert("Welcome User!");
-        window.location.href = "user-dashboard.html";
+        window.location.href = "userDashboard/userFeed.html";
     }
 }
 

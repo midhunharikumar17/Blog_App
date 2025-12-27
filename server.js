@@ -14,48 +14,50 @@ const adminRoutes = require("./routes/adminRoutes");
 const postRoutes = require("./routes/postRoutes");
 const commentRoutes = require("./routes/commentRoutes");
 const likeRoutes =require("./routes/likeRoutes");
+const searchRoutes = require("./routes/searchRoutes");
 
+const path = require("path");
 const app=express();
 app.use(cors());
 
-app.post("/auth/google", async (req, res) => {
-    try {
-        const { token } = req.body;
+// app.post("/auth/google", async (req, res) => {
+//     try {
+//         const { token } = req.body;
 
-        // Verify ID Token with Google
-        const ticket = await client.verifyIdToken({
-            idToken: token,
-            audience: "YOUR_GOOGLE_CLIENT_ID"
-        });
+//         // Verify ID Token with Google
+//         const ticket = await client.verifyIdToken({
+//             idToken: token,
+//             audience: "YOUR_GOOGLE_CLIENT_ID"
+//         });
 
-        const payload = ticket.getPayload();
+//         const payload = ticket.getPayload();
 
-        // User info from Google
-        const user = {
-            name: payload.name,
-            email: payload.email,
-            picture: payload.picture,
-            googleId: payload.sub
-        };
+//         // User info from Google
+//         const user = {
+//             name: payload.name,
+//             email: payload.email,
+//             picture: payload.picture,
+//             googleId: payload.sub
+//         };
 
-        // TODO: check database, create user if needed
+//         // TODO: check database, create user if needed
 
-        res.json({
-            status: "success",
-            user
-        });
+//         res.json({
+//             status: "success",
+//             user
+//         });
 
-    } catch (err) {
-        console.error(err);
-        res.status(401).json({ error: "Invalid Google token" });
-    }
-});
+//     } catch (err) {
+//         console.error(err);
+//         res.status(401).json({ error: "Invalid Google token" });
+//     }
+// });
 
 
 app.use(express.json());
 app.use(express.urlencoded({ extended: true }));
 
-app.use(express.static("public"));
+app.use(express.static(path.join(__dirname, "public")));
 
 // Routes
 app.use("/api/auth", authRoutes);
@@ -69,6 +71,8 @@ app.use("/api/posts", postRoutes);
 app.use("/api/comments", commentRoutes);
 
 app.use("/api/likes", require("./routes/likeRoutes"));
+
+app.use("/api/search",searchRoutes);
 
 app.get("/",(req, res) =>{
     res.send("Server is running");
