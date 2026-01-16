@@ -1,6 +1,20 @@
 document.addEventListener("DOMContentLoaded", async () => {
   console.log("PROFILE JS LOADED");
 
+  const modal = document.getElementById("alertModal");
+const message = document.getElementById("alertMessage");
+const okBtn = document.getElementById("alertOkBtn");
+
+function showAlert(text, redirectUrl = null) {
+    message.textContent = text;
+    modal.classList.add("show");
+
+    okBtn.onclick = () => {
+        modal.classList.remove("show");
+        if (redirectUrl) window.location.href = redirectUrl;
+    };
+}
+
   const user = JSON.parse(localStorage.getItem("user"));
   const token = localStorage.getItem("token");
 
@@ -8,7 +22,7 @@ document.addEventListener("DOMContentLoaded", async () => {
   console.log("TOKEN:", token);
 
   if (!user || !token) {
-    alert("Not logged in");
+    showAlert("Not logged in");
     return;
   }
 

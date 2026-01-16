@@ -79,15 +79,6 @@ app.get("/",(req, res) =>{
 });
 
 
-
-// const token = localStorage.getItem("token");
-
-// const res = await fetch("/api/admin/dashboard", {
-//     headers: { "Authorization": `Bearer ${token}` }
-// });
-
-
-
 const PORT = process.env.PORT || 5000;
 
 app.listen(PORT,() =>{

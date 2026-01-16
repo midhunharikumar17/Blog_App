@@ -91,14 +91,27 @@ document.getElementById("logIn").addEventListener("submit", async (e) => {
 
 
     localStorage.setItem("user", JSON.stringify(data.user));
+    
+const modal = document.getElementById("alertModal");
+const message = document.getElementById("alertMessage");
+const okBtn = document.getElementById("alertOkBtn");
 
-    if(data.role === "admin"){
-        alert("Welcome Admin!");
-        window.location.href = "adminDashboard/admin-dashboard.html";
-    } else {
-        alert("Welcome User!");
-        window.location.href = "userDashboard/userFeed.html";
-    }
+function showAlert(text, redirectUrl = null) {
+    message.textContent = text;
+    modal.classList.add("show");
+
+    okBtn.onclick = () => {
+        modal.classList.remove("show");
+        if (redirectUrl) window.location.href = redirectUrl;
+    };
+}
+if (data.role === "admin") {
+    showAlert("Welcome Admin!", "adminDashboard/admin-dashboard.html");
+} else {
+    showAlert("Welcome User!", "userDashboard/userFeed.html");
+}
+
 }
 
 });
+

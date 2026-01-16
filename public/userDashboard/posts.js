@@ -141,6 +141,17 @@ async function loadComments(postId) {
         <div class="text-sm bg-gray-100 rounded-lg px-3 py-2">
           <strong>${c.author?.name || "User"}:</strong> ${c.content}
         </div>
+      ${
+        c.author._id === loggedInUserId
+          ? `<button
+              onclick="deleteComment('${c._id}', '${postId}')"
+              class="text-xs text-red-500 hover:underline"
+            >
+              Delete
+            </button>`
+          : ""
+      }
+    </div>
       `;
     });
   } catch (err) {
@@ -178,6 +189,32 @@ async function addComment(postId) {
   }
 }
 
+async function deleteComment(commentId, postId) {
+  if (!confirm("Delete this comment?")) return;
+
+  try {
+    const res = await fetch(
+      `${API_URL}/comments/${commentId}`,
+      {
+        method: "DELETE",
+        headers: {
+          Authorization: `Bearer ${token}`,
+        },
+      }
+    );
+
+    if (!res.ok) throw new Error("Failed to delete comment");
+
+    // Reload comments for that post
+    loadComments(postId);
+
+  } catch (err) {
+    console.error("Delete comment failed", err);
+    alert("Could not delete comment");
+  }
+}
+
+
 document.addEventListener("DOMContentLoaded", () => {
   const openBtn = document.getElementById("createPostBtn");
   const modal = document.getElementById("createPostModal");
@@ -207,7 +244,7 @@ document.addEventListener("DOMContentLoaded", () => {
     const content = document.getElementById("postContent").value.trim();
 
     if (!title || !content) {
-      alert("Title and content are required");
+      showAlert("Title and content are required");
       return;
     }
 
@@ -233,7 +270,7 @@ document.addEventListener("DOMContentLoaded", () => {
       loadPosts();
     } catch (err) {
       console.error(err);
-      alert("Post creation failed");
+      showAlert("Post creation failed");
     }
   });
 });

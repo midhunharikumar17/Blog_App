@@ -205,3 +205,67 @@ input:focus {
 .container.right-panel-active .overlay-right {
     transform: translateX(20%);
 }
+/* ===== SAFE MODAL (NO UI CONFLICT) ===== */
+
+.custom-modal {
+    position: fixed;
+    inset: 0;
+    background: rgba(0, 0, 0, 0.4);
+    display: none;
+    align-items: center;
+    justify-content: center;
+    z-index: 99999;
+}
+
+.custom-modal.show {
+    display: flex;
+}
+
+.custom-modal-box {
+    background: #ffffff;
+    padding: 22px 26px;
+    width: 300px;
+    border-radius: 16px;
+    text-align: center;
+    box-shadow: 0 15px 35px rgba(0,0,0,0.2);
+    animation: modalPop 0.25s ease;
+}
+
+.custom-modal-box h2 {
+    font-size: 18px;
+    font-weight: 600;
+    color: #333;
+    margin-bottom: 6px;
+}
+
+.custom-modal-box p {
+    font-size: 14px;
+    color: #555;
+    margin-bottom: 18px;
+}
+
+.custom-modal-box button {
+    background: linear-gradient(135deg, #ff416c, #ff4b2b);
+    border: none;
+    padding: 10px 28px;
+    border-radius: 25px;
+    font-size: 14px;
+    font-weight: 600;
+    color: #fff;
+    cursor: pointer;
+}
+
+.custom-modal-box button:hover {
+    opacity: 0.95;
+}
+
+@keyframes modalPop {
+    from {
+        transform: scale(0.9);
+        opacity: 0;
+    }
+    to {
+        transform: scale(1);
+        opacity: 1;
+    }
+}

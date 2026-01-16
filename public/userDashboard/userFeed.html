@@ -111,11 +111,51 @@
     </div>
   </div>
 </div>
+<div
+  id="alertModal"
+  class="fixed inset-0 z-[99999] hidden items-center justify-center bg-black/40"
+>
+  <div
+    class="w-[300px] rounded-2xl bg-white px-6 py-5 text-center shadow-[0_15px_35px_rgba(0,0,0,0.2)] animate-[modalPop_0.25s_ease]"
+  >
+    <h2 class="mb-1 text-[18px] font-semibold text-gray-800">
+      Notice
+    </h2>
+
+    <p
+      id="alertMessage"
+      class="mb-4 text-sm text-gray-600"
+    ></p>
+
+    <button
+      id="alertOkBtn"
+      class="rounded-full bg-gradient-to-r from-[#ff416c] to-[#ff4b2b] px-7 py-2 text-sm font-semibold text-white transition hover:opacity-95 active:scale-95"
+    >
+      OK
+    </button>
+  </div>
+</div>
+
 
 <!-- SCRIPTS -->
 <script src="posts.js"></script>
 <script src="header.js"></script>
 <script src="comments.js"></script>
+<script>
+  const modal = document.getElementById("alertModal");
+const message = document.getElementById("alertMessage");
+const okBtn = document.getElementById("alertOkBtn");
 
+function showAlert(text, redirectUrl = null) {
+    message.textContent = text;
+    modal.classList.add("show");
+
+    okBtn.onclick = () => {
+        modal.classList.remove("show");
+        if (redirectUrl) window.location.href = redirectUrl;
+    };
+}
+
+</script>
 </body>
 </html>
