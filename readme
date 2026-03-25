@@ -1,4 +1,35 @@
-blog-app/
+# 📝 Blog App — Full Stack Web Application
+
+A full-stack blog platform built with **Node.js, Express, MongoDB** and a **vanilla HTML/CSS/JS** frontend. Supports user authentication, blog post management, commenting, and a separate admin dashboard for content moderation.
+
+---
+
+## ✨ Features
+
+- 🔐 User signup, login & JWT-based authentication
+- 📝 Create, read, and delete blog posts
+- 💬 Comment system on posts
+- 🛡️ Admin dashboard to manage users, posts and comments
+- 👤 Role-based access control (user / admin)
+- 📱 Responsive UI with vanilla HTML, CSS & JavaScript
+
+---
+
+## 🏗️ Tech Stack
+
+| Layer | Technology |
+|---|---|
+| Frontend | HTML, CSS, JavaScript |
+| Backend | Node.js, Express.js |
+| Database | MongoDB |
+| Auth | JWT (JSON Web Tokens) |
+
+---
+
+## 📂 Project Structure
+
+```
+Blog_App/
 │
 ├── controllers/
 │   ├── authController.js
@@ -22,33 +53,93 @@ blog-app/
 ├── config/
 │   └── db.js
 │
+├── public/
+│   ├── index.html        # User feed
+│   ├── admin.html        # Admin dashboard
+│   ├── login.html
+│   ├── signup.html
+│   ├── js/
+│   │   ├── auth.js
+│   │   ├── posts.js
+│   │   └── admin.js
+│   └── css/
+│
 ├── server.js
 └── .env
+```
 
+---
 
-GET    /api/admin/users
-PATCH  /api/admin/users/:id/deactivate
-PATCH  /api/admin/users/:id/activate
+## 🔄 API Endpoints
 
-GET    /api/posts
-DELETE /api/admin/posts/:id
+### Auth
+| Method | Endpoint | Description |
+|---|---|---|
+| POST | `/api/auth/register` | Register user |
+| POST | `/api/auth/login` | Login user |
 
-GET    /api/comments
-DELETE /api/admin/comments/:id
+### Posts
+| Method | Endpoint | Description |
+|---|---|---|
+| GET | `/api/posts` | Get all posts |
+| POST | `/api/posts` | Create post |
+| DELETE | `/api/admin/posts/:id` | Delete post (admin) |
 
+### Comments
+| Method | Endpoint | Description |
+|---|---|---|
+| GET | `/api/comments` | Get all comments |
+| DELETE | `/api/admin/comments/:id` | Delete comment (admin) |
 
+### Admin — Users
+| Method | Endpoint | Description |
+|---|---|---|
+| GET | `/api/admin/users` | Get all users |
+| PATCH | `/api/admin/users/:id/deactivate` | Deactivate user |
+| PATCH | `/api/admin/users/:id/activate` | Activate user |
 
-public/
-│
-├── index.html          # User feed
-├── admin.html          # Admin dashboard
-├── login.html
-├── signup.html
-│
-├── js/
-│   ├── auth.js
-│   ├── posts.js
-│   ├── admin.js
-│
-└── css/
-    └── (optional custom.css)
+---
+
+## ⚙️ Setup & Installation
+
+### 1. Clone the repository
+```bash
+git clone https://github.com/midhunharikumar17/Blog_App.git
+cd Blog_App
+```
+
+### 2. Install dependencies
+```bash
+npm install
+```
+
+### 3. Create `.env` file
+```
+PORT=5000
+MONGO_URI=your_mongodb_connection_string
+JWT_SECRET=your_jwt_secret_key
+```
+
+### 4. Run the server
+```bash
+npm run dev
+```
+
+Open `http://localhost:5000` in your browser.
+
+---
+
+## 🌐 Deployment
+
+| Service | Platform |
+|---|---|
+| Backend | Render |
+| Database | MongoDB Atlas |
+| Frontend | Served via Express static |
+
+---
+
+## 👤 Author
+
+**Midhun Harikumar**  
+[GitHub](https://github.com/midhunharikumar17)
